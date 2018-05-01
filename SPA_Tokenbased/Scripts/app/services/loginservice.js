@@ -21,4 +21,8 @@ app.service('loginservice', function ($http) {
         });
         return resp;
     };
+
+    this.logout = function () {
+        
+    };
 });

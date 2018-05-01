@@ -1,4 +1,4 @@
-﻿app.controller('logincontroller', function ($scope, loginservice) {
+﻿app.controller('loginController', function ($scope, loginservice) {
 
     //Scope Declaration
     $scope.responseData = "";
@@ -42,7 +42,7 @@
 
 
     $scope.redirect = function () {
-        window.location.href = '/Employee/Index';
+        window.location.href = '/';
     };
 
     //Function to Login. This will generate Token 
@@ -71,4 +71,14 @@
         });
 
     };
+
+    $scope.logout = function () {
+        console.log('logout');
+        $scope.userName = '';
+        sessionStorage.setItem('userName', '');
+        sessionStorage.setItem('accessToken', '');
+        sessionStorage.setItem('refreshToken','');
+        window.location.href = '/';
+    }
+
 });

@@ -40,7 +40,7 @@
                     @Html.AntiForgeryToken()
                     <ul class="nav nav-pills flex-column flex-sm-row">
                         <li class="nav-item">
-                            <button class="bg-secondary text-light border-0 nav-link" data-ng-click="Logout()">Log off</button>
+                            <button class="bg-secondary text-light border-0 nav-link" ng-click="Logout()">Log off</button>
                         </li>
                     </ul>
                 }
@@ -73,6 +73,7 @@
     <script src="~/Scripts/app/appModule.js"></script>
     <script src="~/Scripts/app/directives/directives.js"></script>
     <script src="~/Scripts/app/routes.js"></script>
+    <script src="~/Scripts/app/services/loginservice.js"></script>
     <script src="~/Scripts/app/services/authService.js"></script>
     <script src="~/Scripts/app/services/signupService.js"></script>
     <script src="~/Scripts/app/services/userService.js"></script>
