@@ -9,20 +9,6 @@
 </head>
 <body ng-app="app">
     <div class="container">
-        @*<div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("App", "SecurityInfo", "Login", new { area = "" }, new { @class = "navbar-brand" })</li>
-                    <li>@Html.ActionLink("Login", "SecurityInfo", new { area = "" })</li>
-                </ul>
-            </div>
-            <div class="navbar-collapse collapse">
-                @Html.Partial("_LoginPartial")
-            </div>*@
         <nav class="navbar fixed-top navbar-expand navbar-light ">
             <div class="container bg-secondary" id="navlinks" controller="loginController">
                 @if (Request.IsAuthenticated)
@@ -40,7 +26,9 @@
                     @Html.AntiForgeryToken()
                     <ul class="nav nav-pills flex-column flex-sm-row">
                         <li class="nav-item">
-                            <button class="bg-secondary text-light border-0 nav-link" ng-click="Logout()">Log off</button>
+                            @*<button class="bg-secondary text-light border-0 nav-link" ng-click="logout()">Log off</button>*@
+                            <input type="button" value="Logout" class="bg-secondary text-light border-0 nav-link"
+                                   ng-click="logout()" />
                         </li>
                     </ul>
                 }
