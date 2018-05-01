@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body ng-app="app">
+    <div class="container">
+        @*<div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("App", "SecurityInfo", "Login", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    <li>@Html.ActionLink("Login", "SecurityInfo", new { area = "" })</li>
+                </ul>
+            </div>
+            <div class="navbar-collapse collapse">
+                @Html.Partial("_LoginPartial")
+            </div>*@
+        <nav class="navbar fixed-top navbar-expand navbar-light ">
+            <div class="container bg-secondary" id="navlinks" controller="loginController">
+                @if (Request.IsAuthenticated)
+                {
+                    <ul class="nav nav-pills flex-column flex-sm-row">
+                        <li class="nav-item"><a class="bg-secondary text-light nav-link" ui-sref="dashboard">Dashboard</a></li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item"><a class="bg-secondary text-light nav-link" ui-sref="users">Users</a></li>
+                            <li class="nav-item"><a class="bg-secondary text-light nav-link" ui-sref="roles">Roles</a></li>
+                        }
+                    </ul>
+
+
+                    @Html.AntiForgeryToken()
+                    <ul class="nav nav-pills flex-column flex-sm-row">
+                        <li class="nav-item">
+                            <button class="bg-secondary text-light border-0 nav-link" data-ng-click="Logout()">Log off</button>
+                        </li>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="nav nav-pills flex-column flex-sm-row">
+                        <li class="nav-item"><a class="bg-secondary text-warning nav-link" ui-sref="signup">Sign up</a></li>
+                        <li class="nav-item"><a class="bg-secondary text-success nav-link" ui-sref="login">Login</a></li>
+                    </ul>
+                }
+            </div>
+        </nav>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+    </div>
+    <footer class="footer fixed-bottom">
+        <div class="container bg-secondary text-light">
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/angular/plugins")
+
+    <script src="~/Scripts/app/appModule.js"></script>
+    <script src="~/Scripts/app/directives/directives.js"></script>
+    <script src="~/Scripts/app/routes.js"></script>
+    <script src="~/Scripts/app/services/authService.js"></script>
+    <script src="~/Scripts/app/services/signupService.js"></script>
+    <script src="~/Scripts/app/services/userService.js"></script>
+    <script src="~/Scripts/app/services/manageTimeService.js"></script>
+    <script src="~/Scripts/app/services/manageUserRoleService.js"></script>
+    <script src="~/Scripts/app/services/manageRoleService.js"></script>
+    <script src="~/Scripts/app/controllers/loginController.js"></script>
+    <script src="~/Scripts/app/controllers/signupController.js"></script>
+    <script src="~/Scripts/app/controllers/userController.js"></script>
+    <script src="~/Scripts/app/controllers/roleController.js"></script>
+    <script src="~/Scripts/app/controllers/dashboardController.js"></script>
+    <script src="~/Scripts/app/controllers/timeController.js"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

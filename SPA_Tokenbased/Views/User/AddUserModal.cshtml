@@ -1,0 +1,44 @@
+﻿@using WebAPI_NG_TokenbasedAuth.Enums;
+
+<div class="modal fade" id="myAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Add User</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span style="color:red;" class="fa fa-times-circle "></span></button>
+            </div>
+            <div class="modal-body">
+                <div ng-app="signUpApp" ng-controller="signupController">
+                    <div class="form-group">
+                        <label class="label1" for="email">Email address</label>
+                        <input ng-model="registration.email" id="email"
+                               type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label class="label1" for="password">Password</label>
+                        <input ng-model="registration.password" id="password"
+                               type="password" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label class="label1" for="confirm_password">Confirm password</label>
+                        <input ng-model="registration.confirmPassword"
+                               id="confirm_password" type="password" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label class="label1" for="role">Role</label>
+                        <select data-val="true" class="form-control" ng-model="registration.role" required>
+                            <option value="@Role.User" selected="selected">@Role.User</option>
+                            <option value="@Role.Admin">@Role.Admin</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" data-dismiss="modal" value="reset" class="btn btn-warning">Cancel</button>
+                        <button ng-click="signUp()" type="button" data-dismiss="modal" class="btn btn-primary">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

@@ -1,0 +1,6 @@
+﻿<div ng-controller="dashboardController">
+    @if (Request.IsAuthenticated)
+    {
+        @Html.Partial("TimeTracking")
+    }
+</div>
