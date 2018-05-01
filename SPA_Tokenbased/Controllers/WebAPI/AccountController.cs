@@ -16,7 +16,7 @@ using WebAPI_NG_TokenbasedAuth.Models;
 using WebAPI_NG_TokenbasedAuth.Providers;
 using WebAPI_NG_TokenbasedAuth.Results;
 
-namespace WebAPI_NG_TokenbasedAuth.Controllers
+namespace WebAPI_NG_TokenbasedAuth.Controllers.WebAPI
 {
     [Authorize]
     [RoutePrefix("api/Account")]

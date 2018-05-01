@@ -11,6 +11,9 @@
     <div class="container">
         <nav class="navbar fixed-top navbar-expand navbar-light ">
             <div class="container bg-secondary" id="navlinks" controller="loginController">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 @if (Request.IsAuthenticated)
                 {
                     <ul class="nav nav-pills flex-column flex-sm-row">
@@ -23,14 +26,15 @@
                     </ul>
 
 
-                    @Html.AntiForgeryToken()
-                    <ul class="nav nav-pills flex-column flex-sm-row">
-                        <li class="nav-item">
-                            @*<button class="bg-secondary text-light border-0 nav-link" ng-click="logout()">Log off</button>*@
-                            <input type="button" value="Logout" class="bg-secondary text-light border-0 nav-link"
-                                   ng-click="logout()" />
-                        </li>
-                    </ul>
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <ul class="nav nav-pills flex-column flex-sm-row">
+                            <li class="nav-item">
+                                <button class="bg-secondary text-light border-0 nav-link" data-ng-click="Logout()">Log off</button>
+                            </li>
+                        </ul>
+                    }
                 }
                 else
                 {

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Collections.Generic;
 using System.Web.Http;
 using WebAPI_NG_TokenbasedAuth.Models;
 
-namespace WebAPI_NG_TokenbasedAuth.Controllers
+namespace WebAPI_NG_TokenbasedAuth.Controllers.WebAPI
 {
     [Authorize]
     public class EmployeeAPIController : ApiController

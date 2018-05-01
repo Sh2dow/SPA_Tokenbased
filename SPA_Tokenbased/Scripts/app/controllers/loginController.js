@@ -1,4 +1,46 @@
-﻿app.controller('loginController', function ($scope, loginservice) {
+﻿app.controller('loginController', ['$scope', '$location', '$state', 'authService', function ($scope, $location, $state, authService) {
+    $scope.init = function () {
+        $scope.isProcessing = false;
+        $scope.LoginBtnText = "Sign In";
+    }
+
+    $scope.init();
+
+    $scope.loginData = {
+        userName: '',
+        password: '',
+        persist: false,
+        errors: []
+    }
+
+    $scope.Login = function () {
+        $scope.isProcessing = true;
+        $scope.LoginBtnText = "Signing in.....";
+
+        authService.login($scope.loginData)
+            .then(function (response) {
+                alert("Login Successfully");
+                $state.go('dashboard', {}, { reload: false })
+                .then(function () {
+                    setTimeout(function () {
+                        location.reload(true);
+                    });
+                })
+
+            }, function () {
+                alert("Failed.Please try again.");
+                $scope.init();
+            })
+    }
+
+    $scope.Logout = function () {
+        authService.logOut();
+    }
+
+}])
+
+
+app.controller('_loginController', function ($scope, loginservice) {
 
     //Scope Declaration
     $scope.responseData = "";

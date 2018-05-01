@@ -6,13 +6,13 @@
     $stateProvider
         .state('login', {
             url: '/login',
-            templateUrl: 'Login/Login',
+            templateUrl: 'Account/Login',
             controller: 'loginController'
         })
 
         .state('signup', {
             url: '/signup',
-            templateUrl: 'Login/Signup',
+            templateUrl: 'Account/Signup',
             controller: 'signupController'
         })
 
