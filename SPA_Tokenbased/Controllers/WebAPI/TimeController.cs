@@ -23,7 +23,7 @@ namespace WebAPI_NG_TokenbasedAuth.Controllers.WebAPI
             var hours = (int)(model.End - model.Start).TotalHours;
             currentUser.TotalHours += hours;
 
-            currentUser.TimeTrackingData.Add(new TimeTrackingData
+            currentUser.TimeTrackingData.Add(new TimeTrack
             {
                 Date = model.End.Date,
                 Hours = (byte)hours
@@ -37,7 +37,7 @@ namespace WebAPI_NG_TokenbasedAuth.Controllers.WebAPI
         // POST: /api/Time/GetTracks
         [HttpGet]
         [Route("api/Time/GetTracks")]
-        public async Task<IHttpActionResult> GetTracks(string userId)
+        public IHttpActionResult GetTracks(string userId)
         {
             var timeTracks = Context.Users.AsQueryable().Where(x => x.Id == userId).SelectMany(t => t.TimeTrackingData).ToList();
 

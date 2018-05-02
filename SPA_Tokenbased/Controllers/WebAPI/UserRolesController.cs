@@ -22,6 +22,7 @@ namespace WebAPI_NG_TokenbasedAuth.Controllers.WebAPI
                 id = x.Id,
                 email = x.Email,
                 userName = x.UserName,
+                fullname = x.Fullname,
                 totalHours = x.TotalHours,
                 roleName = Context.Roles.FirstOrDefault(r => r.Id == x.Roles.FirstOrDefault().RoleId).Name
             });

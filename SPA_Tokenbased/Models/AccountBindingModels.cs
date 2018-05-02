@@ -36,6 +36,10 @@ namespace WebAPI_NG_TokenbasedAuth.Models
     public class RegisterBindingModel
     {
         [Required]
+        [Display(Name = "Fullname")]
+        public string Fullname { get; set; }
+
+        [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
@@ -56,6 +60,10 @@ namespace WebAPI_NG_TokenbasedAuth.Models
 
     public class RegisterExternalBindingModel
     {
+        [Required]
+        [Display(Name = "Fullname")]
+        public string Fullname { get; set; }
+
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }

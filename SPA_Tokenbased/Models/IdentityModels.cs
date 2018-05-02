@@ -10,14 +10,16 @@ namespace WebAPI_NG_TokenbasedAuth.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-        public virtual ICollection<TimeTrackingData> TimeTrackingData { get; set; }
+        public virtual ICollection<TimeTrack> TimeTrackingData { get; set; }
 
         public int TotalHours { get; set; }
 
         public ApplicationUser()
         {
-            this.TimeTrackingData = new HashSet<TimeTrackingData>();
+            this.TimeTrackingData = new HashSet<TimeTrack>();
         }
+
+        public string Fullname { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
@@ -39,6 +41,15 @@ namespace WebAPI_NG_TokenbasedAuth.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<TimeTrack> TimeTracks { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // do fluent API stuff below
+        }
     }
 
     public class AppDbInitializer : DropCreateDatabaseIfModelChanges<ApplicationDbContext>
@@ -55,7 +66,7 @@ namespace WebAPI_NG_TokenbasedAuth.Models
             roleManager.Create(adminRole);
             roleManager.Create(userRole);
 
-            var admin = new ApplicationUser { UserName = "admin@admin", Email = "admin@admin" };
+            var admin = new ApplicationUser { UserName = "admin@admin", Email = "admin@admin", Fullname = "Admin Admin" };
             string password = "123456";
             var result = userManager.Create(admin, password);
 

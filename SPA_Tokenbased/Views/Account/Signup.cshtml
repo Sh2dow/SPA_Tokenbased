@@ -7,6 +7,13 @@
             <td>
                 <table class="table table-bordered table-striped table-condensed">
                     <tr>
+                        <td>Name:</td>
+                        <td>
+                            <input ng-model="registration.fullname" id="fullname"
+                                   type="text" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
                         <td>Email:</td>
                         <td>
                             <input ng-model="registration.email" id="email"
@@ -17,7 +24,7 @@
                         <td>Password:</td>
                         <td>
                             <input ng-model="registration.password"
-                                   id="confirm_password" type="password" class="form-control" />
+                                   id="password" type="password" class="form-control" />
                         </td>
                     </tr>
                     <tr>

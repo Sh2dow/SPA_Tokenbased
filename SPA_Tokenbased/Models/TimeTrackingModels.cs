@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System;
-using System.Collections.Generic;
 
 namespace WebAPI_NG_TokenbasedAuth.Models
 {
@@ -17,7 +16,7 @@ namespace WebAPI_NG_TokenbasedAuth.Models
         public DateTime End { get; set; }
     }
 
-    public class TimeTrackingData
+    public class TimeTrack
     {
         [Key]
         public DateTime Date { get; set; }

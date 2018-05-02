@@ -1,6 +1,5 @@
 ﻿using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
-using System.Web.Http.Cors;
 
 namespace WebAPI_NG_TokenbasedAuth
 {
@@ -9,8 +8,6 @@ namespace WebAPI_NG_TokenbasedAuth
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-            EnableCorsAttribute cors = new EnableCorsAttribute("*", "*", "*");
-            config.EnableCors(cors);
 
             // Configure Web API to use only bearer token authentication.
             config.SuppressDefaultHostAuthentication();

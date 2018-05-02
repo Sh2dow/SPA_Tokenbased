@@ -77,7 +77,7 @@ namespace WebAPI_NG_TokenbasedAuth.Controllers.WebAPI
         [Route("ManageInfo")]
         public async Task<ManageInfoViewModel> GetManageInfo(string returnUrl, bool generateState = false)
         {
-            IdentityUser user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
 
             if (user == null)
             {
@@ -329,7 +329,7 @@ namespace WebAPI_NG_TokenbasedAuth.Controllers.WebAPI
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, Fullname = model.Fullname };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 

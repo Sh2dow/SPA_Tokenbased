@@ -10,6 +10,11 @@
             <div class="modal-body">
                 <div ng-app="signUpApp" ng-controller="signupController">
                     <div class="form-group">
+                        <label class="label1" for="fullname">Name</label>
+                        <input ng-model="registration.fullname" id="fullname"
+                               type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
                         <label class="label1" for="email">Email address</label>
                         <input ng-model="registration.email" id="email"
                                type="text" class="form-control" />
