@@ -10,13 +10,13 @@ namespace WebAPI_NG_TokenbasedAuth.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-        public virtual ICollection<TimeTrackingDataModel> TimeTrackingData { get; set; }
+        public virtual ICollection<TimeTrackingData> TimeTrackingData { get; set; }
 
         public int TotalHours { get; set; }
 
         public ApplicationUser()
         {
-            this.TimeTrackingData = new HashSet<TimeTrackingDataModel>();
+            this.TimeTrackingData = new HashSet<TimeTrackingData>();
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)

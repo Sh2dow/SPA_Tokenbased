@@ -2,7 +2,7 @@
     $httpProvider.interceptors.push('authInterceptorService');
 });
 
-app.controller('userController', ['$scope', 'manageUserRoleService', function ($scope, manageUserRoleService) {
+app.controller('userController', ['$scope', 'manageUserRoleService', 'manageTimeService', function ($scope, manageUserRoleService, manageTimeService) {
 
     $scope.init = function () {
         manageUserRoleService.GetAllUsers().then(function (response) {
@@ -13,6 +13,14 @@ app.controller('userController', ['$scope', 'manageUserRoleService', function ($
     }
 
     $scope.init();
+
+    $scope.ViewTracking = function (user) {
+        manageTimeService.GetUserTracks(user.id).then(function (response) {
+            $scope.timeTracks = response.data;
+        }, function () {
+            alert("Failed.");
+        })
+    }
 
     $scope.ViewUser = function (user) {
         $scope.viewUser = angular.copy(user);

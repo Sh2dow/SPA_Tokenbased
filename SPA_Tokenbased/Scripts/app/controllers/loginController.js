@@ -61,7 +61,7 @@ app.controller('loginController', function ($scope, loginservice) {
 
     //Function to register user
     $scope.registerUser = function () {
-        
+
         $scope.responseData = '';
 
         //The User Registration Information
@@ -70,16 +70,16 @@ app.controller('loginController', function ($scope, loginservice) {
             Password: $scope.userRegistrationPassword,
             ConfirmPassword: $scope.userRegistrationConfirmPassword
         };
-        
+
         var promiseregister = loginservice.register(userRegistrationInfo);
 
         promiseregister.then(function (resp) {
             $scope.responseData = "Successfully registered";
-            $scope.userRegistrationEmail="";
-            $scope.userRegistrationPassword="";
-            $scope.userRegistrationConfirmPassword="";
+            $scope.userRegistrationEmail = "";
+            $scope.userRegistrationPassword = "";
+            $scope.userRegistrationConfirmPassword = "";
         }, function (err) {
-            $scope.responseData="Error " + err.status;
+            $scope.responseData = "Error " + err.status;
         });
     };
 
@@ -101,18 +101,19 @@ app.controller('loginController', function ($scope, loginservice) {
         var promiselogin = loginservice.login($scope.loginData);
 
         promiselogin.then(function (resp) {
-            
+
             $scope.username = resp.data.username;
             //Store the token information in the SessionStorage
             //So that it can be accessed for other views
-            sessionStorage.setItem('username', resp.data.username);
+            sessionStorage.setItem('username', resp.data.userName);
+            sessionStorage.setItem('roles', resp.data.roles);
             sessionStorage.setItem('accessToken', resp.data.access_token);
             sessionStorage.setItem('refreshToken', resp.data.refresh_token);
             //window.location.href = '/Employee/Index';
             window.location.href = '/';
         }, function (err) {
-            
-            $scope.responseData="Error " + err.status;
+
+            $scope.responseData = "Error " + err.status;
         });
 
     };
@@ -122,25 +123,19 @@ app.controller('loginController', function ($scope, loginservice) {
         console.log('logout');
         $scope.username = '';
         sessionStorage.removeItem('username');
+        sessionStorage.removeItem('roles');
         sessionStorage.removeItem('accessToken');
         sessionStorage.removeItem('refreshToken');
         window.location.href = '/';
     }
 
     //Utility
-    $scope.getCookie = function (name) {
-        var cookiename = name + "=";
-        var ca = document.cookie.split(';');
-        for (var i = 0; i < ca.length; i++) {
-            var c = ca[i];
-            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-            if (c.indexOf(cookiename) == 0) return c.substring(cookiename.length, c.length);
-        }
-        return null;
+    $scope.getSessionStorage = function (name) {
+        console.log('username: ' + sessionStorage.getItem('username'));
+        console.log('roles: ' + sessionStorage.getItem('roles'));
+        console.log('name: ' + sessionStorage.getItem(name));
+        
     }
 
-    $scope.isLoggedIn = function () {
-        return getCookie("userid") != null;
-    }
 
 });

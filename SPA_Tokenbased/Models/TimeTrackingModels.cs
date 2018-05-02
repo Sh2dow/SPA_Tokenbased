@@ -5,6 +5,8 @@ namespace WebAPI_NG_TokenbasedAuth.Models
 {
     public class TimeTrackingModel
     {
+        public string Username { get; set; }
+
         [Required]
         [Display(Name = "Start Time")]
         public DateTime Start { get; set; }
@@ -14,7 +16,7 @@ namespace WebAPI_NG_TokenbasedAuth.Models
         public DateTime End { get; set; }
     }
 
-    public class TimeTrackingDataModel
+    public class TimeTrackingData
     {
         [Key]
         public DateTime Date { get; set; }

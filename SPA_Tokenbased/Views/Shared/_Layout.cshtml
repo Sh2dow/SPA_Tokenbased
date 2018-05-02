@@ -10,10 +10,11 @@
 <body ng-app="app">
     <div class="container">
         <nav class="navbar fixed-top navbar-expand navbar-light ">
-            <div class="container bg-secondary" id="navlinks" controller="loginController">
+            <div class="container bg-secondary" id="navlinks" ng-controller="loginController">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
                 @if (Request.IsAuthenticated)
                 {
                     <ul class="nav nav-pills flex-column flex-sm-row">
@@ -22,9 +23,10 @@
                         {
                             <li class="nav-item"><a class="bg-secondary text-light nav-link" ui-sref="users">Users</a></li>
                             <li class="nav-item"><a class="bg-secondary text-light nav-link" ui-sref="roles">Roles</a></li>
+
                         }
                     </ul>
-
+                    <button class="bg-secondary text-light border-0 nav-link" data-ng-click="getSessionStorage('userid')">cookie</button>
 
                     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                     {

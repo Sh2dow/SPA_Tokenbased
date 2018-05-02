@@ -28,7 +28,7 @@
                                     <td ng-bind="$index+1"></td>
                                     <td ng-bind="user.email"></td>
                                     <td ng-bind="user.roleName"></td>
-                                    <td ng-bind="user.totalHours"></td>
+                                    <td>{{user.totalHours}} <b>h</b></td>
                                     <td>
                                         <p>
                                             <a class="button-width btn btn-xs btn-success" data-toggle="modal" data-target="#trackingModal" ng-click="ViewTracking(user)">View</a>
