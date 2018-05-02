@@ -13,8 +13,8 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using WebAPI_NG_TokenbasedAuth.Models;
-using WebAPI_NG_TokenbasedAuth.Providers;
 using WebAPI_NG_TokenbasedAuth.Results;
+using System.Linq;
 
 namespace WebAPI_NG_TokenbasedAuth.Controllers.WebAPI
 {
@@ -263,7 +263,9 @@ namespace WebAPI_NG_TokenbasedAuth.Controllers.WebAPI
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
                     CookieAuthenticationDefaults.AuthenticationType);
 
-                AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName);
+                List<Claim> roles = oAuthIdentity.Claims.Where(c => c.Type == ClaimTypes.Role).ToList();
+                AuthenticationProperties properties = CreateProperties(user.UserName, Newtonsoft.Json.JsonConvert.SerializeObject(roles.Select(x => x.Value)));
+
                 Authentication.SignIn(properties, oAuthIdentity, cookieIdentity);
             }
             else
@@ -486,6 +488,16 @@ namespace WebAPI_NG_TokenbasedAuth.Controllers.WebAPI
                 _random.GetBytes(data);
                 return HttpServerUtility.UrlTokenEncode(data);
             }
+        }
+
+        public static AuthenticationProperties CreateProperties(string userName, string Roles)
+        {
+            IDictionary<string, string> data = new Dictionary<string, string>
+            {
+                { "userName", userName },
+                { "roles", Roles}
+            };
+            return new AuthenticationProperties(data);
         }
 
         #endregion

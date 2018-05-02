@@ -18,8 +18,8 @@ app.controller('userController', ['$scope', 'manageUserRoleService', function ($
         $scope.viewUser = angular.copy(user);
     }
 
-    $scope.DeleteUser = function (Id) {
-        manageUserRoleService.DeleteUser(Id).then(function () {
+    $scope.DeleteUser = function (id) {
+        manageUserRoleService.DeleteUser(id).then(function () {
             alert("Deleted Successfully.");
             $scope.init();
         }, function () {
@@ -65,7 +65,7 @@ app.controller('userController', ['$scope', 'manageUserRoleService', function ($
     };
 
     $scope.UpdateUserRoles = function () {
-        manageUserRoleService.AddUpdateToRoles($scope.SelectedUser.Id, $scope.selection).then(function () {
+        manageUserRoleService.AddUpdateToRoles($scope.SelectedUser.id, $scope.selection).then(function () {
             $scope.init();
             alert("User roles added successfully.");
         }, function () {

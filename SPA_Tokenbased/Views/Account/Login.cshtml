@@ -4,8 +4,8 @@
         <!-- EMAIL -->
         <div class="form-group">
             <label>Email address</label>
-            <input type="email" name="email" class="form-control" ng-model="loginData.userName">
-            <p ng-show="userForm.userName.$invalid && !userForm.userName.$pristine" class="help-block">Enter a valid email.</p>
+            <input type="email" name="email" class="form-control" ng-model="loginData.username">
+            <p ng-show="userForm.username.$invalid && !userForm.username.$pristine" class="help-block">Enter a valid email.</p>
         </div>
 
         <!-- PASSWORD -->
@@ -19,7 +19,7 @@
             <div style="padding-top:10px;">
                 <input ng-click="Login()" ng-disabled="userForm.$invalid || isProcessing"
                        type="button" class="btn btn-block btn-success"
-                       value="{{LoginBtnText}}" />
+                       value="Sign in" />
             </div>
         </div>
         <p class="footer_para">

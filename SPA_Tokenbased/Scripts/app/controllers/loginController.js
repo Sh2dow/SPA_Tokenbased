@@ -1,4 +1,4 @@
-﻿app.controller('loginController', ['$scope', '$location', '$state', 'authService', function ($scope, $location, $state, authService) {
+﻿app.controller('_loginController', ['$scope', '$location', '$state', 'authService', function ($scope, $location, $state, authService) {
     $scope.init = function () {
         $scope.isProcessing = false;
         $scope.LoginBtnText = "Sign In";
@@ -7,7 +7,7 @@
     $scope.init();
 
     $scope.loginData = {
-        userName: '',
+        username: '',
         password: '',
         persist: false,
         errors: []
@@ -40,28 +40,29 @@
 }])
 
 
-app.controller('_loginController', function ($scope, loginservice) {
+app.controller('loginController', function ($scope, loginservice) {
 
     //Scope Declaration
-    $scope.responseData = "";
+    $scope.responseData = '';
 
-    $scope.userName = "";
+    $scope.username = '';
+    $scope.password = '';
 
-    $scope.userRegistrationEmail = "";
-    $scope.userRegistrationPassword = "";
-    $scope.userRegistrationConfirmPassword = "";
+    $scope.userRegistrationEmail = '';
+    $scope.userRegistrationPassword = '';
+    $scope.userRegistrationConfirmPassword = '';
 
-    $scope.userLoginEmail = "";
-    $scope.userLoginPassword = "";
+    $scope.userLoginEmail = '';
+    $scope.userLoginPassword = '';
 
-    $scope.accessToken = "";
-    $scope.refreshToken = "";
+    $scope.accessToken = '';
+    $scope.refreshToken = '';
     //Ends Here
 
-    //Functionn to register user
+    //Function to register user
     $scope.registerUser = function () {
         
-        $scope.responseData = "";
+        $scope.responseData = '';
 
         //The User Registration Information
         var userRegistrationInfo = {
@@ -73,7 +74,7 @@ app.controller('_loginController', function ($scope, loginservice) {
         var promiseregister = loginservice.register(userRegistrationInfo);
 
         promiseregister.then(function (resp) {
-            $scope.responseData = "User is Successfully";
+            $scope.responseData = "Successfully registered";
             $scope.userRegistrationEmail="";
             $scope.userRegistrationPassword="";
             $scope.userRegistrationConfirmPassword="";
@@ -88,25 +89,27 @@ app.controller('_loginController', function ($scope, loginservice) {
     };
 
     //Function to Login. This will generate Token 
-    $scope.login = function () {
+    $scope.Login = function () {
         //This is the information to pass for token based authentication
-        var userLogin = {
-            grant_type: 'password',
-            username: $scope.userLoginEmail,
-            password: $scope.userLoginPassword
-        };
 
-        var promiselogin = loginservice.login(userLogin);
+        //var loginData = {
+        //    grant_type: 'password',
+        //    username: $scope.username,
+        //    password: $scope.password
+        //};
+
+        var promiselogin = loginservice.login($scope.loginData);
 
         promiselogin.then(function (resp) {
             
-            $scope.userName = resp.data.userName;
+            $scope.username = resp.data.username;
             //Store the token information in the SessionStorage
             //So that it can be accessed for other views
-            sessionStorage.setItem('userName', resp.data.userName);
+            sessionStorage.setItem('username', resp.data.username);
             sessionStorage.setItem('accessToken', resp.data.access_token);
             sessionStorage.setItem('refreshToken', resp.data.refresh_token);
-            window.location.href = '/Employee/Index';
+            //window.location.href = '/Employee/Index';
+            window.location.href = '/';
         }, function (err) {
             
             $scope.responseData="Error " + err.status;
@@ -114,13 +117,30 @@ app.controller('_loginController', function ($scope, loginservice) {
 
     };
 
-    $scope.logout = function () {
+    //Logout
+    $scope.Logout = function () {
         console.log('logout');
-        $scope.userName = '';
-        sessionStorage.setItem('userName', '');
-        sessionStorage.setItem('accessToken', '');
-        sessionStorage.setItem('refreshToken','');
+        $scope.username = '';
+        sessionStorage.removeItem('username');
+        sessionStorage.removeItem('accessToken');
+        sessionStorage.removeItem('refreshToken');
         window.location.href = '/';
+    }
+
+    //Utility
+    $scope.getCookie = function (name) {
+        var cookiename = name + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+            if (c.indexOf(cookiename) == 0) return c.substring(cookiename.length, c.length);
+        }
+        return null;
+    }
+
+    $scope.isLoggedIn = function () {
+        return getCookie("userid") != null;
     }
 
 });

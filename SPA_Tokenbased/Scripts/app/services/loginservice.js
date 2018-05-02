@@ -11,15 +11,23 @@ app.service('loginservice', function ($http) {
         return resp;
     };
 
-    this.login = function (userlogin) {
+    this.login = function (loginData) {
         
-        var resp = $http({
-            url: "/TOKEN",
-            method: "POST",
-            data: $.param({ grant_type: 'password', username: userlogin.username, password: userlogin.password }),
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        });
-        return resp;
+        var data = "grant_type=password&username=" + loginData.username + "&password=" + loginData.password;
+
+        return $http.post('/token', data, {
+            header: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        })
+
+        //var resp = $http({
+        //    url: "/TOKEN",
+        //    method: "POST",
+        //    data: $.param({ grant_type: 'password', username: loginData.username, password: loginData.password }),
+        //    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        //});
+        //return resp;
     };
 
     this.logout = function () {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
+using WebAPI_NG_TokenbasedAuth.Enums;
 
 namespace WebAPI_NG_TokenbasedAuth.Models
 {
@@ -37,6 +38,9 @@ namespace WebAPI_NG_TokenbasedAuth.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Required]
+        public Role Role { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 1)]

@@ -13,12 +13,13 @@ namespace WebAPI_NG_TokenbasedAuth.Controllers.WebAPI
 
         [HttpPost]
         [Route("api/Time/SubmitTime")]
+        [Authorize]
         public async Task<IHttpActionResult> SubmitTime([FromBody]TimeTrackingModel model)
         {
             var userStore = new UserStore<ApplicationUser>(Context);
             var userManager = new UserManager<ApplicationUser>(userStore);
 
-            var usr = User.Identity.GetUserId();
+            var usr = RequestContext.Principal.Identity.GetUserId();
             var currentUser = Context.Users.FirstOrDefault(x => x.Id == usr);
 
             currentUser.TotalHours = (int)(model.End - model.Start).TotalHours;

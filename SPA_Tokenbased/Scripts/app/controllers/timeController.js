@@ -9,10 +9,10 @@
 
         manageTimeService.submitTime($scope.time).then(function (response) {
             $scope.message = response;
-        }, function (error) {
-            $scope.message = error;
+        }, function () {
+            $scope.message = 'error';
         })
-        alert($scope.message);
+        console.log($scope.message);
     }
 
     $scope.init();

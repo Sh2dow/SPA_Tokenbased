@@ -23,15 +23,13 @@ C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenba
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\roslyn\Microsoft.CSharp.Core.targets
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\roslyn\Microsoft.Managed.Core.targets
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\roslyn\Microsoft.VisualBasic.Core.targets
-C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\roslyn\Microsoft.Win32.Primitives.dll
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\roslyn\System.AppContext.dll
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\roslyn\System.Console.dll
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
-C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\roslyn\System.Diagnostics.Process.dll
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\roslyn\System.Diagnostics.StackTrace.dll
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\roslyn\System.IO.Compression.dll
-C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\roslyn\System.IO.Pipes.AccessControl.dll
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\roslyn\System.IO.Pipes.dll
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\roslyn\System.Security.AccessControl.dll
@@ -41,7 +39,6 @@ C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenba
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\roslyn\System.Security.Principal.Windows.dll
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\roslyn\System.Text.Encoding.CodePages.dll
-C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\roslyn\System.Threading.Thread.dll
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\roslyn\System.Xml.ReaderWriter.dll
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\roslyn\System.Xml.XmlDocument.dll
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\roslyn\System.Xml.XPath.dll
@@ -57,6 +54,7 @@ C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenba
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\Microsoft.AspNet.Identity.Owin.dll
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\Microsoft.Owin.Cors.dll
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\Microsoft.Owin.dll
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\Microsoft.Owin.Host.SystemWeb.dll
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\Microsoft.Owin.Security.Cookies.dll
@@ -70,7 +68,9 @@ C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenba
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\Newtonsoft.Json.dll
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\Owin.dll
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\System.Net.Http.Formatting.dll
+C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\System.Web.Cors.dll
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\System.Web.Helpers.dll
+C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\System.Web.Http.Cors.dll
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\System.Web.Http.dll
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\System.Web.Http.Owin.dll
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\System.Web.Http.WebHost.dll
@@ -86,6 +86,7 @@ C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenba
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\EntityFramework.SqlServer.xml
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\Microsoft.Owin.xml
+C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\Microsoft.Owin.Cors.xml
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\Microsoft.Owin.Host.SystemWeb.xml
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\Microsoft.Owin.Security.xml
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\Microsoft.Owin.Security.Cookies.xml
@@ -98,6 +99,7 @@ C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenba
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\System.Net.Http.Formatting.xml
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\System.Web.Helpers.xml
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\System.Web.Http.xml
+C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\System.Web.Http.Cors.xml
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\System.Web.Http.Owin.xml
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\System.Web.Http.WebHost.xml
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\System.Web.Mvc.xml

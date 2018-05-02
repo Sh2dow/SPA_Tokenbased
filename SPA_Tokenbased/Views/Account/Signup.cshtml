@@ -1,6 +1,6 @@
 ﻿@using WebAPI_NG_TokenbasedAuth.Enums
 
-<div ng-controller="loginController">
+<div ng-controller="signupController">
     <h1>User Registration</h1>
     <table class="table table-bordered table-striped table-condensed">
         <tr>
@@ -9,22 +9,22 @@
                     <tr>
                         <td>Email:</td>
                         <td>
-                            <input type="text" class="form-control"
-                                   ng-model="userRegistrationEmail" />
+                            <input ng-model="registration.email" id="email"
+                                   type="text" class="form-control" />
                         </td>
                     </tr>
                     <tr>
                         <td>Password:</td>
                         <td>
-                            <input type="password" class="form-control"
-                                   ng-model="userRegistrationPassword" />
+                            <input ng-model="registration.password"
+                                   id="confirm_password" type="password" class="form-control" />
                         </td>
                     </tr>
                     <tr>
                         <td>Confirm Password:</td>
                         <td>
-                            <input type="password" class="form-control"
-                                   ng-model="userRegistrationConfirmPassword" />
+                            <input ng-model="registration.confirmPassword"
+                                   id="confirm_password" type="password" class="form-control" />
                         </td>
                     </tr>
                     <tr>
@@ -41,7 +41,7 @@
                         <td>
                             <input type="button" value="Register"
                                    class="form-control btn btn-success"
-                                   ng-click="registerUser()" />
+                                   ng-click="signUp()" />
                         </td>
                     </tr>
                 </table>

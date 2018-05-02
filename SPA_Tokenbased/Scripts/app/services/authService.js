@@ -114,7 +114,7 @@ AuthApp.factory('authService', ['$http', '$q', '$cookieStore', function ($http, 
     authServiceFactory.login = function (loginData) {
         authServiceFactory.removeAuthentication();
 
-        var data = "grant_type=password&username=" + loginData.userName + "&password=" + loginData.password;
+        var data = "grant_type=password&username=" + loginData.username + "&password=" + loginData.password;
 
         var deferred = $q.defer();
 
@@ -127,7 +127,7 @@ AuthApp.factory('authService', ['$http', '$q', '$cookieStore', function ($http, 
             $cookieStore.put('auth_data', data);
 
             userData.isAuthenticated = true;
-            userData.username = data.userName;
+            userData.username = data.username;
             userData.bearerToken = data.access_token;
             userData.expirationDate = new Date(data['.expires']);
             userData.roles = data.roles;
@@ -150,7 +150,7 @@ AuthApp.factory('authService', ['$http', '$q', '$cookieStore', function ($http, 
         $cookieStore.remove('authorizationData');
 
         userData.isAuthenticated = false;
-        userData.userName = "";
+        userData.username = "";
     };
 
     authServiceFactory.fillAuthData = function () {
