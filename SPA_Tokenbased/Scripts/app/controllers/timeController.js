@@ -1,8 +1,8 @@
 ﻿app.controller('timeController', ['$scope', 'manageTimeService', function ($scope, manageTimeService) {
 
     $scope.time = {
-        start: moment().format(),
-        end: moment().format(),
+        start: moment().subtract(8, 'hours').format('YYYY-MM-DD h:mm A'),
+        end: moment().format('YYYY-MM-DD h:mm A'),
         username: ''
     };
         

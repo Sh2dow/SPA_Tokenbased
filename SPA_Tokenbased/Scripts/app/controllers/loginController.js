@@ -40,7 +40,7 @@
 }])
 
 
-app.controller('loginController', function ($scope, loginservice) {
+app.controller('loginController', function ($scope, loginservice, $state) {
 
     //Scope Declaration
     $scope.responseData = '';
@@ -110,7 +110,12 @@ app.controller('loginController', function ($scope, loginservice) {
             sessionStorage.setItem('accessToken', resp.data.access_token);
             sessionStorage.setItem('refreshToken', resp.data.refresh_token);
             //window.location.href = '/Employee/Index';
-            window.location.href = '/';
+            $state.go('dashboard', {}, { reload: false })
+                .then(function () {
+                    setTimeout(function () {
+                        location.reload(true);
+                    });
+                })
         }, function (err) {
 
             $scope.responseData = "Error " + err.status;
@@ -134,7 +139,7 @@ app.controller('loginController', function ($scope, loginservice) {
         console.log('username: ' + sessionStorage.getItem('username'));
         console.log('roles: ' + sessionStorage.getItem('roles'));
         console.log('name: ' + sessionStorage.getItem(name));
-        
+
     }
 
 

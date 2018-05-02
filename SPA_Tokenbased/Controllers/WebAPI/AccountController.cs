@@ -333,7 +333,11 @@ namespace WebAPI_NG_TokenbasedAuth.Controllers.WebAPI
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
-            if (!result.Succeeded)
+            if (result.Succeeded)
+            {
+                UserManager.AddToRole(user.Id, model.Role.ToString());
+            }
+            else
             {
                 return GetErrorResult(result);
             }

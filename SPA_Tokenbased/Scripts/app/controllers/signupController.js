@@ -11,9 +11,10 @@ function ($scope, $state, signUpService) {
     $scope.init();
 
     $scope.registration = {
-        Email: "",
-        Password: "",
-        ConfirmPassword: ""
+        email: '',
+        password: '',
+        confirmPassword: '',
+        role: ''
     };
 
     $scope.signUp = function () {

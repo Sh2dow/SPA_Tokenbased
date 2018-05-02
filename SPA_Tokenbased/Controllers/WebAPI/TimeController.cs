@@ -20,7 +20,14 @@ namespace WebAPI_NG_TokenbasedAuth.Controllers.WebAPI
 
             var currentUser = Context.Users.FirstOrDefault(x => x.UserName == model.Username);
 
-            currentUser.TotalHours = (int)(model.End - model.Start).TotalHours;
+            var hours = (int)(model.End - model.Start).TotalHours;
+            currentUser.TotalHours = hours;
+
+            currentUser.TimeTrackingData.Add(new TimeTrackingData
+            {
+                Date = model.End.Date,
+                Hours = (byte)hours
+            });
 
             var result = await Context.SaveChangesAsync();
 
@@ -32,17 +39,7 @@ namespace WebAPI_NG_TokenbasedAuth.Controllers.WebAPI
         [Route("api/Time/GetTracks")]
         public async Task<IHttpActionResult> GetTracks(string userId)
         {
-            var userStore = new UserStore<ApplicationUser>(Context);
-            var userManager = new UserManager<ApplicationUser>(userStore);
-
-            var retval = await userManager.GetRolesAsync(userId);
-
-            foreach (string role in retval)
-            {
-                await userManager.RemoveFromRolesAsync(userId, role);
-            }
-
-            var timeTracks = Context.Users.Select(x => x.TimeTrackingData).ToList();
+            var timeTracks = Context.Users.AsQueryable().Where(x => x.Id == userId).SelectMany(t => t.TimeTrackingData).ToList();
 
             return Ok(timeTracks);
         }

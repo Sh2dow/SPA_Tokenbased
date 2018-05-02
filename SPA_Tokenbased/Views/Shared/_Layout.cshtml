@@ -26,8 +26,6 @@
 
                         }
                     </ul>
-                    <button class="bg-secondary text-light border-0 nav-link" data-ng-click="getSessionStorage('userid')">cookie</button>
-
                     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                     {
                         @Html.AntiForgeryToken()
