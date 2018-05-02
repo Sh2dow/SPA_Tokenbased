@@ -21,7 +21,7 @@ namespace WebAPI_NG_TokenbasedAuth.Controllers.WebAPI
             var currentUser = Context.Users.FirstOrDefault(x => x.UserName == model.Username);
 
             var hours = (int)(model.End - model.Start).TotalHours;
-            currentUser.TotalHours = hours;
+            currentUser.TotalHours += hours;
 
             currentUser.TimeTrackingData.Add(new TimeTrackingData
             {
