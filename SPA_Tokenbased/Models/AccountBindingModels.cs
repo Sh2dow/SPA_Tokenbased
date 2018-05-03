@@ -36,10 +36,6 @@ namespace WebAPI_NG_TokenbasedAuth.Models
     public class RegisterBindingModel
     {
         [Required]
-        [Display(Name = "Username")]
-        public string Username { get; set; }
-
-        [Required]
         [Display(Name = "Fullname")]
         public string Fullname { get; set; }
 
@@ -47,8 +43,8 @@ namespace WebAPI_NG_TokenbasedAuth.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Display(Name = "Role Name")]
-        public string RoleName { get; set; }
+        [Required]
+        public Role Role { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 1)]

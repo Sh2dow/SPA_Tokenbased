@@ -1,4 +1,4 @@
-﻿app.controller('timeController', function ($scope, manageTimeService, $cookieStore) {
+﻿app.controller('timeController', ['$scope', 'manageTimeService', function ($scope, manageTimeService) {
 
     $scope.time = {
         start: moment().subtract(8, 'hours').format('YYYY-MM-DD h:mm A'),
@@ -7,7 +7,7 @@
     };
         
     $scope.trackTime = function () {
-        $scope.time.username = $cookieStore.get('username');
+        $scope.time.username = sessionStorage.getItem('username');
         manageTimeService.submitTime($scope.time).then(function (response) {
             $scope.message = response;
         }, function () {
@@ -18,4 +18,4 @@
 
     $scope.init();
 
-})
+}])
