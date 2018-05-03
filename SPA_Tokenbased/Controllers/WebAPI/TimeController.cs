@@ -1,31 +1,25 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using WebAPI_NG_TokenbasedAuth.Models;
+﻿using WebAPI_NG_TokenbasedAuth.Models;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace WebAPI_NG_TokenbasedAuth.Controllers.WebAPI
 {
-    public class TimeController : ApiController
+    [RoutePrefix("api/Time")]
+    public class TimeController : BaseApiController
     {
-        private ApplicationDbContext Context = new ApplicationDbContext();
-
         [HttpPost]
-        [Route("api/Time/SubmitTime")]
+        [Route("SubmitTime")]
         public async Task<IHttpActionResult> SubmitTime([FromBody]TimeTrackingModel model)
         {
-            var userStore = new UserStore<ApplicationUser>(Context);
-            var userManager = new UserManager<ApplicationUser>(userStore);
-
             var currentUser = Context.Users.FirstOrDefault(x => x.UserName == model.Username);
 
             var hours = (int)(model.End - model.Start).TotalHours;
             currentUser.TotalHours += hours;
 
-            currentUser.TimeTrackingData.Add(new TimeTrack
+            currentUser.TimeTracks.Add(new TimeTrack
             {
-                Date = model.End.Date,
+                Date = model.End,
                 Hours = (byte)hours
             });
 
@@ -36,10 +30,10 @@ namespace WebAPI_NG_TokenbasedAuth.Controllers.WebAPI
 
         // POST: /api/Time/GetTracks
         [HttpGet]
-        [Route("api/Time/GetTracks")]
+        [Route("GetTracks")]
         public IHttpActionResult GetTracks(string userId)
         {
-            var timeTracks = Context.Users.AsQueryable().Where(x => x.Id == userId).SelectMany(t => t.TimeTrackingData).ToList();
+            var timeTracks = Context.Users.AsQueryable().Where(x => x.Id == userId).SelectMany(t => t.TimeTracks).ToList();
 
             return Ok(timeTracks);
         }

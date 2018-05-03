@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
+using WebAPI_NG_TokenbasedAuth.Infrastructure;
 using WebAPI_NG_TokenbasedAuth.Models;
 
 namespace WebAPI_NG_TokenbasedAuth

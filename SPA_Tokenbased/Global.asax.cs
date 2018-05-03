@@ -3,6 +3,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using WebAPI_NG_TokenbasedAuth.Infrastructure;
 using WebAPI_NG_TokenbasedAuth.Models;
 
 namespace WebAPI_NG_TokenbasedAuth

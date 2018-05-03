@@ -5,7 +5,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using WebAPI_NG_TokenbasedAuth.Providers;
-using WebAPI_NG_TokenbasedAuth.Models;
+using WebAPI_NG_TokenbasedAuth.Infrastructure;
 
 namespace WebAPI_NG_TokenbasedAuth
 {
@@ -34,9 +34,11 @@ namespace WebAPI_NG_TokenbasedAuth
                 TokenEndpointPath = new PathString("/Token"),
                 Provider = new ApplicationOAuthProvider(PublicClientId),
                 AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
+                //If the AccessTokenExpireTimeSpan is changed, also change the ExpiresUtc in the RefreshTokenProvider.cs.
+                AccessTokenExpireTimeSpan = TimeSpan.FromHours(4),
                 // In production mode set AllowInsecureHttp = false
-                AllowInsecureHttp = true
+                AllowInsecureHttp = true,
+                RefreshTokenProvider = new RefreshTokenProvider()
             };
 
             // Enable the application to use bearer tokens to authenticate users

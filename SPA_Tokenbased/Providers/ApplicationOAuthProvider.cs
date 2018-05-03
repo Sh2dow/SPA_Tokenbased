@@ -8,6 +8,7 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using WebAPI_NG_TokenbasedAuth.Models;
+using Microsoft.AspNet.Identity;
 
 namespace WebAPI_NG_TokenbasedAuth.Providers
 {
@@ -27,10 +28,7 @@ namespace WebAPI_NG_TokenbasedAuth.Providers
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
-
             var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
-
             ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
 
             if (user == null)
@@ -44,8 +42,15 @@ namespace WebAPI_NG_TokenbasedAuth.Providers
             ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
                 CookieAuthenticationDefaults.AuthenticationType);
 
+            //AuthenticationProperties properties = CreateProperties(user.UserName);
             List<Claim> roles = oAuthIdentity.Claims.Where(c => c.Type == ClaimTypes.Role).ToList();
             AuthenticationProperties properties = CreateProperties(user.UserName, Newtonsoft.Json.JsonConvert.SerializeObject(roles.Select(x => x.Value)));
+
+            var identity = new ClaimsIdentity(context.Options.AuthenticationType);
+            identity.AddClaim(new Claim("sub", context.UserName));
+            identity.AddClaim(new Claim("role", "User"));
+            identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
+            //identity.AddClaim(new Claim("RoleName", user.RoleName));
 
             AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
             context.Validated(ticket);
@@ -86,6 +91,15 @@ namespace WebAPI_NG_TokenbasedAuth.Providers
             }
 
             return Task.FromResult<object>(null);
+        }
+
+        public static AuthenticationProperties CreateProperties(string userName)
+        {
+            IDictionary<string, string> data = new Dictionary<string, string>
+            {
+                { "userName", userName }
+            };
+            return new AuthenticationProperties(data);
         }
 
         public static AuthenticationProperties CreateProperties(string userName, string Roles)

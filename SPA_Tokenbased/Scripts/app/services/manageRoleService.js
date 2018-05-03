@@ -3,7 +3,7 @@
     var manageRoleAppfactory = {};
 
     manageRoleAppfactory.GetAllRoles = function () {
-        return $http.get('/api/Roles')
+        return $http.get('/api/Roles/Get')
     }
 
     manageRoleAppfactory.CreateRole = function (newRoleName) {

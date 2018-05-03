@@ -8,10 +8,8 @@ using System.Web.Http;
 
 namespace WebAPI_NG_TokenbasedAuth.Controllers.WebAPI
 {
-    public class UserRolesController : ApiController
+    public class UserRolesController : BaseApiController
     {
-        private ApplicationDbContext Context = new ApplicationDbContext();
-
         [HttpGet]
         [Route("api/Users/GetAll")]
         //[WebApiAuthorize(Roles = "Admin")]
