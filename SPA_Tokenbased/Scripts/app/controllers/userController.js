@@ -1,6 +1,4 @@
-﻿app.config(function($httpProvider) {
-    $httpProvider.interceptors.push('authInterceptorService');
-});
+﻿
 
 app.controller('userController', ['$scope', 'manageUserRoleService', 'manageTimeService', function ($scope, manageUserRoleService, manageTimeService) {
 

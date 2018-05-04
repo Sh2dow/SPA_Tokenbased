@@ -1,6 +1,4 @@
-﻿var app;
-
-app = angular.module('app', [
+﻿var app = angular.module('app', [
     'ngCookies',
     'ngResource',
     'ngSanitize',

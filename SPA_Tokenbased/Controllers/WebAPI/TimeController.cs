@@ -7,10 +7,8 @@ using System.Web.Http;
 
 namespace WebAPI_NG_TokenbasedAuth.Controllers.WebAPI
 {
-    public class TimeController : ApiController
+    public class TimeController : BaseApiController
     {
-        private ApplicationDbContext Context = new ApplicationDbContext();
-
         [HttpPost]
         [Route("api/Time/SubmitTime")]
         public async Task<IHttpActionResult> SubmitTime([FromBody]TimeTrackingModel model)
@@ -25,7 +23,7 @@ namespace WebAPI_NG_TokenbasedAuth.Controllers.WebAPI
 
             currentUser.TimeTrackingData.Add(new TimeTrack
             {
-                Date = model.End.Date,
+                Date = model.End,
                 Hours = (byte)hours
             });
 
@@ -35,6 +33,7 @@ namespace WebAPI_NG_TokenbasedAuth.Controllers.WebAPI
         }
 
         // POST: /api/Time/GetTracks
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         [Route("api/Time/GetTracks")]
         public IHttpActionResult GetTracks(string userId)

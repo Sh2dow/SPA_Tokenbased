@@ -2,7 +2,7 @@
 
 namespace WebAPI_NG_TokenbasedAuth.Controllers
 {
-    [AllowAnonymous]
+    [Authorize]
     public class UserController : Controller
     {
         public ActionResult Index()
@@ -31,6 +31,7 @@ namespace WebAPI_NG_TokenbasedAuth.Controllers
         {
             return PartialView();
         }
+
         public ActionResult TimeTracking()
         {
             return PartialView();

@@ -2,172 +2,68 @@
 
 var AuthApp = angular.module('AuthApp', []);
 
-AuthApp.factory('authInterceptorService', ['$q', '$injector', '$window', '$cookieStore', function ($q, $injector, $window, $cookieStore) {
-
-    var authInterceptorServiceFactory = {
-    };
-
-    authInterceptorServiceFactory.request = function (config) {
-
-        config.headers = config.headers || {
-        };
-
-        //var authData = localStorageService.get('authorizationData');
-        var authData = $cookieStore.get('auth_data');
-        if (authData) {
-            config.headers.Authorization = 'Bearer ' + authData.token;
-        }
-
-        return config;
-    }
-
-    authInterceptorServiceFactory.responseError = function (rejection) {
-        if (rejection.status === 401) {
-            var authService = $injector.get('authService');
-            var authData = $cookieStore.get('authorizationData');
-            //authService.logOut();
-        }
-        return $q.reject(rejection);
-    };
-
-    return authInterceptorServiceFactory;
-
-}]);
+AuthApp.run(function ($http, $cookies) {
+    //If a token exists in the cookie, load it after the app is loaded, so that the application can maintain the authenticated state.
+    $http.defaults.headers.common.Authorization = 'Bearer ' + $cookies.get('_Token');
+    $http.defaults.headers.common.RefreshToken = $cookies.get('_RefreshToken');
+});
 
 
-AuthApp.factory('authService', ['$http', '$q', '$cookieStore', function ($http, $q, $cookieStore) {
-    var authServiceFactory = {
-    };
+//GLOBAL FUNCTIONS - pretty much a root/global controller.
+//Get username on each page
+//Get updated token on page change.
+//Logout available on each page.
+AuthApp.run(function ($rootScope, $http, $cookies) {
 
-    var userData = {
-        isAuthenticated: false,
-        username: '',
-        bearerToken: '',
-        expirationDate: null,
-        roles: []
-    };
+    $rootScope.Logout = function () {
 
-    authServiceFactory.saveData = function () {
-        authServiceFactory.removeData();
-        $cookieStore.put('auth_data', userData);
-    }
-
-    authServiceFactory.removeData = function () {
-        $cookieStore.remove('auth_data');
-    }
-
-    authServiceFactory.retrieveSavedData = function () {
-        var savedData = $cookieStore.get('auth_data');
-        if (typeof savedData === 'undefined') {
-            throw new AuthenticationRetrievalException('No authentication data exists');
-        } else if (isAuthenticationExpired(savedData.expirationDate)) {
-            throw new AuthenticationExpiredException('Authentication token has already expired');
-        } else {
-            userData = savedData;
-            authServiceFactory.setHttpAuthHeader();
-        }
-    }
-
-    authServiceFactory.clearUserData = function () {
-        userData.isAuthenticated = false;
-        userData.username = '';
-        userData.bearerToken = '';
-        userData.expirationDate = null;
-        userData.roles = null;
+        $http.post('/api/Account/Logout')
+            .then(function (data) {
+                $http.defaults.headers.common.Authorization = null;
+                $http.defaults.headers.common.RefreshToken = null;
+                var cookies = $cookies.getAll();
+                angular.forEach(cookies, function (v, k) {
+                    $cookies.remove(k);
+                });
+                $rootScope.username = '';
+                $rootScope.loggedIn = false;
+                window.location = '/';
+            }).catch(function (error) {
+                console.log('error:' + error);
+                alert(error);
+            });
 
     }
 
-    authServiceFactory.setHttpAuthHeader = function () {
-        $http.defaults.headers.common.Authorization = 'Bearer ' + userData.bearerToken;
-    }
+    $rootScope.$on('$locationChangeSuccess', function (event) {
+        if ($http.defaults.headers.common.RefreshToken != null) {
+            var params = "grant_type=refresh_token&refresh_token=" + $http.defaults.headers.common.RefreshToken;
+            $http({
+                url: '/Token',
+                method: "POST",
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                data: params
+            })
+            .then(function (data) {
+                $http.defaults.headers.common.Authorization = "Bearer " + data.access_token;
+                $http.defaults.headers.common.RefreshToken = data.refresh_token;
 
-    authServiceFactory.isAuthenticated = function () {
-        if (userData.isAuthenticated && !isAuthenticationExpired(userData.expirationDate)) {
-            return true;
-        } else {
-            try {
-                retrieveSavedData();
-            } catch (e) {
-                throw new NoAuthenticationException('Authentication not found');
-            }
-            return true;
+                $cookies.put('_Token', data.access_token);
+                $cookies.put('_RefreshToken', data.refresh_token);
+
+                if (typeof data.data.userName != "undefined") {
+                    console.log(data.data.userName);
+                    $rootScope.username = data.data.userName.replace(/["']{1}/gi, "");//Remove any quotes from the username before pushing it out.
+                    $rootScope.loggedIn = true;
+                }
+                else
+                    $rootScope.loggedIn = false;
+            })
+            .catch(function (error) {
+                console.log(error);
+                $rootScope.loggedIn = false;
+            });
         }
-    };
+    });
+});
 
-    authServiceFactory.getUserData = function () {
-        return userData;
-    };
-
-    authServiceFactory.saveRegistration = function (registration) {
-
-        authServiceFactory.logOut();
-
-        return $http.post('/api/account/register', registration)
-    };
-
-    authServiceFactory.removeAuthentication = function () {
-        authServiceFactory.removeData();
-        authServiceFactory.clearUserData();
-        $http.defaults.headers.common.Authorization = null;
-    };
-
-    authServiceFactory.login = function (loginData) {
-        authServiceFactory.removeAuthentication();
-
-        var data = "grant_type=password&username=" + loginData.username + "&password=" + loginData.password;
-
-        var deferred = $q.defer();
-
-        $http.post('token', data, {
-            header: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
-        }).then(function (data) {
-            $cookieStore.remove('auth_data');
-            $cookieStore.put('auth_data', data);
-
-            userData.isAuthenticated = true;
-            userData.username = data.username;
-            userData.bearerToken = data.access_token;
-            userData.expirationDate = new Date(data['.expires']);
-            userData.roles = data.roles;
-            authServiceFactory.setHttpAuthHeader();
-            if (loginData.persistData === true) {
-                authServiceFactory.saveData();
-            }
-
-            deferred.resolve(data);
-        }).catch(function (err) {
-            //_logOut();
-            deferred.reject(err);
-        });
-
-        return deferred.promise;
-    };
-
-    authServiceFactory.logOut = function () {
-
-        $cookieStore.remove('authorizationData');
-
-        userData.isAuthenticated = false;
-        userData.username = "";
-    };
-
-    authServiceFactory.fillAuthData = function () {
-        var authData = $cookieStore.get('authorizationData');
-        if (authData) {
-            userData.isAuthenticated = true;
-        }
-        else {
-            userData.isAuthenticated = false;
-        }
-    };
-
-    authServiceFactory.changePassword = function (passwordData) {
-
-        return $http.post('/api/Manage/ChangePassword', passwordData)
-
-    };
-
-    return authServiceFactory;
-}]);

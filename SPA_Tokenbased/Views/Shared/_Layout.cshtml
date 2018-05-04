@@ -18,30 +18,26 @@
                 @if (Request.IsAuthenticated)
                 {
                     <ul class="nav nav-pills flex-column flex-sm-row">
-                        <li class="nav-item"><a class="bg-secondary text-light nav-link" ui-sref="dashboard">Dashboard</a></li>
+                        <li class="nav-item"><a class="bg-secondary text-light nav-link" ui-sref="user.dashboard">Dashboard</a></li>
                         @if (User.IsInRole("Admin"))
                         {
-                            <li class="nav-item"><a class="bg-secondary text-light nav-link" ui-sref="users">Users</a></li>
-                            <li class="nav-item"><a class="bg-secondary text-light nav-link" ui-sref="roles">Roles</a></li>
+                            <li class="nav-item"><a class="bg-secondary text-light nav-link" ui-sref="user.users">Users</a></li>
+                            <li class="nav-item"><a class="bg-secondary text-light nav-link" ui-sref="user.roles">Roles</a></li>
 
                         }
                     </ul>
 
-                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-                    {
-                        @Html.AntiForgeryToken()
                         <ul class="nav nav-pills flex-column flex-sm-row">
                             <li class="nav-item">
                                 <button class="bg-secondary text-light border-0 nav-link" data-ng-click="Logout()">Log off</button>
                             </li>
                         </ul>
-                    }
                 }
                 else
                 {
                     <ul class="nav nav-pills flex-column flex-sm-row">
-                        <li class="nav-item"><a class="bg-secondary text-warning nav-link" ui-sref="signup">Sign up</a></li>
-                        <li class="nav-item"><a class="bg-secondary text-success nav-link" ui-sref="login">Login</a></li>
+                        <li class="nav-item"><a class="bg-secondary text-warning nav-link" ui-sref="home.signup">Sign up</a></li>
+                        <li class="nav-item"><a class="bg-secondary text-success nav-link" ui-sref="home.login">Login</a></li>
                     </ul>
                 }
             </div>

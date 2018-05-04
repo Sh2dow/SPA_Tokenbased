@@ -111,3 +111,4 @@ C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenba
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\bin\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\obj\Debug\WebAPI_NG_TokenbasedAuth.dll
 C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\obj\Debug\WebAPI_NG_TokenbasedAuth.pdb
+C:\Users\sh2dow\Documents\Visual Studio 2015\Projects\SPA_Tokenbased\SPA_Tokenbased\obj\Debug\SPA_Tokenbased.csprojResolveAssemblyReference.cache

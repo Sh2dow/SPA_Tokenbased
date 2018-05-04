@@ -1,4 +1,5 @@
-﻿using Microsoft.Owin.Security;
+﻿using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -51,11 +52,11 @@ namespace WebAPI_NG_TokenbasedAuth.Controllers
             return PartialView();
         }
 
-        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult LogOff()
+        public ActionResult Logout()
         {
             AuthenticationManager.SignOut();
+            Session.Abandon();
             return RedirectToAction("Index", "Account");
         }
     }
