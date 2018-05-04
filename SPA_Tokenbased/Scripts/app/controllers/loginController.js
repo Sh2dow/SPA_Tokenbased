@@ -16,15 +16,15 @@
             $cookies.put('roles', data.data.roles);
             $cookies.put('accessToken', data.data.access_token);
             $cookies.put('refreshToken', data.data.refresh_token);
+            $cookies.put('loggedIn', true);
 
             //window.location = '/';
 
-            $state.go('user.dashboard', {}, { reload: false })
-                .then(function () {
-                    setTimeout(function () {
-                        location.reload(true);
-                    });
-                })
+            $rootScope.isAdmin = $cookies.get('roles') == '["Admin"]';
+            $rootScope.loggedIn = true;
+            setTimeout(function () {
+                $state.go('user.dashboard')
+            });
         }).catch(function (data) {
             console.log(data);
             $scope.message = data.data.replace(/["']{1}/gi, "");

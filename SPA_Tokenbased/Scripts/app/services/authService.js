@@ -13,12 +13,13 @@ AuthApp.run(function ($http, $cookies) {
 //Get username on each page
 //Get updated token on page change.
 //Logout available on each page.
-AuthApp.run(function ($rootScope, $http, $cookies) {
+AuthApp.run(function ($rootScope, $http, $cookies, $state) {
 
     $rootScope.Logout = function () {
 
         $http.post('/api/Account/Logout')
             .then(function (data) {
+                $rootScope.loggedIn = false;
                 $http.defaults.headers.common.Authorization = null;
                 $http.defaults.headers.common.RefreshToken = null;
                 var cookies = $cookies.getAll();
@@ -26,8 +27,7 @@ AuthApp.run(function ($rootScope, $http, $cookies) {
                     $cookies.remove(k);
                 });
                 $rootScope.username = '';
-                $rootScope.loggedIn = false;
-                window.location = '/';
+                $state.go('home.login');
             }).catch(function (error) {
                 console.log('error:' + error);
                 alert(error);

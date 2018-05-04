@@ -8,38 +8,26 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body ng-app="app">
-    <div class="container">
-        <nav class="navbar fixed-top navbar-expand navbar-light ">
-            <div class="container bg-secondary" id="navlinks" ng-controller="loginController">
+    <div class="container" ng-controller="loginController" ng-cloak>
+        <nav class="navbar fixed-top navbar-expand navbar-light" ng-controller="navbarController">
+            <div class="container bg-secondary" id="navlinks">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                <ul class="nav nav-pills flex-column flex-sm-row">
+                    <li class="nav-item"><a class="bg-secondary text-warning nav-link" ui-sref="home.signup" ng-show="!loggedIn" ng-hide="loggedIn">Sign up</a></li>
+                    <li class="nav-item"><a class="bg-secondary text-success nav-link" ui-sref="home.login" ng-show="!loggedIn" ng-hide="loggedIn">Login</a></li>
+                    <li class="nav-item"><a class="bg-secondary text-light nav-link" ui-sref="user.dashboard" ng-show="loggedIn" ng-hide="!loggedIn">Dashboard</a></li>
+                    <li class="nav-item"><a class="bg-secondary text-light nav-link" ui-sref="user.users" ng-show="isAdmin=getAdminCookie()">Users</a></li>
+                    <li class="nav-item"><a class="bg-secondary text-light nav-link" ui-sref="user.roles" ng-show="isAdmin=getAdminCookie()">Roles</a></li>
+                </ul>
 
-                @if (Request.IsAuthenticated)
-                {
-                    <ul class="nav nav-pills flex-column flex-sm-row">
-                        <li class="nav-item"><a class="bg-secondary text-light nav-link" ui-sref="user.dashboard">Dashboard</a></li>
-                        @if (User.IsInRole("Admin"))
-                        {
-                            <li class="nav-item"><a class="bg-secondary text-light nav-link" ui-sref="user.users">Users</a></li>
-                            <li class="nav-item"><a class="bg-secondary text-light nav-link" ui-sref="user.roles">Roles</a></li>
+                <ul class="nav nav-pills flex-column flex-sm-row">
+                    <li class="nav-item">
+                        <button class="bg-secondary text-light border-0 nav-link" data-ng-click="Logout()" ng-show="loggedIn" ng-hide="!loggedIn">Log off</button>
+                    </li>
+                </ul>
 
-                        }
-                    </ul>
-
-                        <ul class="nav nav-pills flex-column flex-sm-row">
-                            <li class="nav-item">
-                                <button class="bg-secondary text-light border-0 nav-link" data-ng-click="Logout()">Log off</button>
-                            </li>
-                        </ul>
-                }
-                else
-                {
-                    <ul class="nav nav-pills flex-column flex-sm-row">
-                        <li class="nav-item"><a class="bg-secondary text-warning nav-link" ui-sref="home.signup">Sign up</a></li>
-                        <li class="nav-item"><a class="bg-secondary text-success nav-link" ui-sref="home.login">Login</a></li>
-                    </ul>
-                }
             </div>
         </nav>
     </div>
@@ -73,7 +61,7 @@
     <script src="~/Scripts/app/controllers/signupController.js"></script>
     <script src="~/Scripts/app/controllers/userController.js"></script>
     <script src="~/Scripts/app/controllers/roleController.js"></script>
-    <script src="~/Scripts/app/controllers/dashboardController.js"></script>
+    <script src="~/Scripts/app/controllers/navbarController.js"></script>
     <script src="~/Scripts/app/controllers/timeController.js"></script>
 
     @RenderSection("scripts", required: false)

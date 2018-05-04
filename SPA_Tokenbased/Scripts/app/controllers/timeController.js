@@ -14,7 +14,4 @@
             console.log(error);
         })
     }
-
-    $scope.init();
-
 })

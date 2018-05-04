@@ -59,7 +59,6 @@
                 authenticate: true,
                 url: '/dashboard',
                 templateUrl: 'User/Dashboard',
-                controller: 'dashboardController',
             })
 
             .state('user.users', {

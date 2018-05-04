@@ -4,54 +4,48 @@
     <h1>User Registration</h1>
     <table class="table table-bordered table-striped table-condensed">
         <tr>
+            <td>Name:</td>
             <td>
-                <table class="table table-bordered table-striped table-condensed">
-                    <tr>
-                        <td>Name:</td>
-                        <td>
-                            <input ng-model="registration.fullname" id="fullname"
-                                   type="text" class="form-control" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Email:</td>
-                        <td>
-                            <input ng-model="registration.email" id="email"
-                                   type="text" class="form-control" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Password:</td>
-                        <td>
-                            <input ng-model="registration.password"
-                                   id="password" type="password" class="form-control" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Confirm Password:</td>
-                        <td>
-                            <input ng-model="registration.confirmPassword"
-                                   id="confirm_password" type="password" class="form-control" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Choose Role:</td>
-                        <td>
-                            <select data-val="true" class="form-control" ng-model="registration.role" required>
-                                <option value="@Role.User">@Role.User</option>
-                                <option value="@Role.Admin">@Role.Admin</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <input type="button" value="Register"
-                                   class="form-control btn btn-success"
-                                   ng-click="signUp()" />
-                        </td>
-                    </tr>
-                </table>
+                <input ng-model="registration.fullname" id="fullname"
+                       type="text" class="form-control" />
+            </td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td>
+                <input ng-model="registration.email" id="email"
+                       type="text" class="form-control" />
+            </td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td>
+                <input ng-model="registration.password"
+                       id="password" type="password" class="form-control" />
+            </td>
+        </tr>
+        <tr>
+            <td>Confirm Password:</td>
+            <td>
+                <input ng-model="registration.confirmPassword"
+                       id="confirm_password" type="password" class="form-control" />
+            </td>
+        </tr>
+        <tr>
+            <td>Choose Role:</td>
+            <td>
+                <select data-val="true" class="form-control" ng-model="registration.role" required>
+                    <option value="@Role.User">@Role.User</option>
+                    <option value="@Role.Admin">@Role.Admin</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="button" value="Register"
+                       class="form-control btn btn-success"
+                       ng-click="signUp()" />
             </td>
         </tr>
     </table>
