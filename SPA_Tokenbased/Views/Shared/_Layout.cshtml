@@ -8,7 +8,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body ng-app="app">
-    <div class="container" ng-controller="loginController" ng-cloak>
+    <div class="container" ng-controller="loginController">
         <nav class="navbar fixed-top navbar-expand navbar-light" ng-controller="navbarController">
             <div class="container bg-secondary" id="navlinks">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,23 +46,25 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/angular/plugins")
+    @Styles.Render("~/Content/datatables/css")
+    @Scripts.Render("~/bundles/datatables")
 
     <script src="~/Scripts/app/appModule.js"></script>
     <script src="~/Scripts/app/directives/directives.js"></script>
     <script src="~/Scripts/app/routes.js"></script>
-    <script src="~/Scripts/app/services/loginservice.js"></script>
+    <script src="~/Scripts/app/services/loginService.js"></script>
     <script src="~/Scripts/app/services/authService.js"></script>
     <script src="~/Scripts/app/services/signupService.js"></script>
     <script src="~/Scripts/app/services/userService.js"></script>
-    <script src="~/Scripts/app/services/manageTimeService.js"></script>
-    <script src="~/Scripts/app/services/manageUserRoleService.js"></script>
-    <script src="~/Scripts/app/services/manageRoleService.js"></script>
+    <script src="~/Scripts/app/services/roleService.js"></script>
+    <script src="~/Scripts/app/services/timeService.js"></script>
     <script src="~/Scripts/app/controllers/loginController.js"></script>
     <script src="~/Scripts/app/controllers/signupController.js"></script>
     <script src="~/Scripts/app/controllers/userController.js"></script>
     <script src="~/Scripts/app/controllers/roleController.js"></script>
     <script src="~/Scripts/app/controllers/navbarController.js"></script>
     <script src="~/Scripts/app/controllers/timeController.js"></script>
+    <script src="~/Scripts/app/datatables/usersGrid.js"></script>
 
     @RenderSection("scripts", required: false)
 </body>

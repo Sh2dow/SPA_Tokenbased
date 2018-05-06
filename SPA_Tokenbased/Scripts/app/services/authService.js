@@ -52,7 +52,6 @@ AuthApp.run(function ($rootScope, $http, $cookies, $state) {
                 $cookies.put('_RefreshToken', data.refresh_token);
 
                 if (typeof data.data.userName != "undefined") {
-                    console.log(data.data.userName);
                     $rootScope.username = data.data.userName.replace(/["']{1}/gi, "");//Remove any quotes from the username before pushing it out.
                     $rootScope.loggedIn = true;
                 }

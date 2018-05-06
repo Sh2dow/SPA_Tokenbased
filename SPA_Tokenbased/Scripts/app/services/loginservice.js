@@ -1,6 +1,4 @@
-﻿//The Service Containing functions for Register User and 
-//User Login
-app.service('loginservice', function ($http) {
+﻿app.service('loginservice', function ($http) {
 
     this.register = function (userInfo) {
         var resp = $http({
@@ -20,14 +18,6 @@ app.service('loginservice', function ($http) {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         })
-
-        //var resp = $http({
-        //    url: "/TOKEN",
-        //    method: "POST",
-        //    data: $.param({ grant_type: 'password', username: loginData.username, password: loginData.password }),
-        //    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        //});
-        //return resp;
     };
 
     this.logout = function () {

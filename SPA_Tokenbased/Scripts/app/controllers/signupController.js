@@ -22,7 +22,8 @@ function ($scope, $state, signUpService) {
         $scope.RegisterBtnText = "Please wait...";
         signUpService.saveRegistration($scope.registration).then(function (response) {
             alert("Registration Successfully Completed. Please sign in to Continue.");
-            $state.go('home.login');
+            //$state.go('home.login');
+            $state.reload();
         }, function () {
             alert("Error occured. Please try again.");
             $scope.isProcessing = false;

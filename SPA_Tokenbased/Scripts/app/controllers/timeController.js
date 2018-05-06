@@ -9,9 +9,9 @@
     $scope.trackTime = function () {
         $scope.time.username = $cookies.get('username');
         manageTimeService.submitTime($scope.time).then(function (data) {
-            console.log(data);
+            alert(data.statusText);
         }, function (error) {
-            console.log(error);
+            alert(error.statusText);
         })
     }
 })

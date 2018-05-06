@@ -2,85 +2,62 @@
 
     var $scope;
     var $compile;
-    var grid = null;
 
-    var handleRecords = function (filter) {
+    var handleRecords = function () {
 
-        grid = new Datatable().setScopeLanguage($scope);
-
-        // adding default filter values
-        for (var i in filter) {
-            grid.setAjaxParam(i, filter[i]);
-        }
+        var grid = new Datatable();
 
         var columns = [
             {
-                data: "code",
-                sortable: false
+                data: 'fullname',
+                sortable: false,
             },
             {
-                data: "name",
-                sortable: false
+                data: 'totalHours',
+                sortable: false,
             },
             {
                 data: null,
                 sortable: false,
-                render: function (data) { return data.address.state.abbreviation }
-            },
-            {
-                data: "assignmentTitle",
-                sortable: false
+                render: _renderActionButtons
             }
         ];
 
         grid.init({
-            src: $("#agencies"),
+            src: $("#users"),
             dataTable: {
-                "paging": false,
-                "info": false,
                 "ajax": {
-                    "url": "/api/agency/filter",
+                    'url': '/api/User/GetAll',
+                    'method': 'GET',
                 },
-                "scrollY": "210px",
-                "scrollCollapse": false,
+                "serverSide": false,
+                "paging": true,
+                "bRetrieve": true,
+                "pagingType": 'full_numbers',
+                "ordering": false,
+                "scrollY": '42em',
                 "columns": columns,
                 "createdRow": function (row, data, index) {
-
-                    $(row).prop('id', data.id);
-                    $(row).on('click', function (event) {
-                        $('.selected-row').removeClass('selected-row');
-                        $(this).addClass('selected-row');
-                        $scope.$apply($scope.selectedEntity = data);
-                    });
-
-                },
-                "order": [],
-                "initComplete": function (settings, json) {
-                    var $scb = $('#tpe_wrapper').find('.dataTables_scrollBody');
-                    Metronic.initSlimScroll($scb);
+                    $compile(row)($scope);
                 },
             }
         });
 
-        $('#tpe_wrapper').css('margin-top', 0);
-
         return grid;
+    }
+
+    function _renderActionButtons(data, type, row, meta) {
+        var id = data["id"];
+        return '<a class="btn btn-xs btn-success" data-toggle="modal" data-target="#trackingModal" ng-click="ViewTracking(\'' + id + '\')">View</a>';
     }
 
     return {
 
-        filter: function (filter) {
-            for (var i in filter) {
-                grid.setAjaxParam(i, filter[i]);
-            }
-            grid.getDataTable().api().ajax.reload();
-        },
-
         //main function to initiate the module
-        init: function (scope, compile, filter) {
+        init: function (scope, compile) {
             $scope = scope;
             $compile = compile;
-            return handleRecords(filter);
+            return handleRecords();
         }
     };
 

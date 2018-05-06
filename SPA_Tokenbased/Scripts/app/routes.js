@@ -3,7 +3,8 @@
         //$httpProvider.defaults.withCredentials = true;
 
         //================================================
-        // Ignore Template Request errors if a page that was requested was not found or unauthorized.  The GET operation could still show up in the browser debugger, but it shouldn't show a $compile:tpload error.
+        // Ignore Template Request errors if a page that was requested was not found or unauthorized.  
+        // The GET operation could still show up in the browser debugger, but it shouldn't show a $compile:tpload error.
         //================================================
         $provide.decorator('$templateRequest', ['$delegate', function ($delegate) {
             var mySilentProvider = function (tpl, ignoreRequestError) {
@@ -60,22 +61,23 @@
                 url: '/dashboard',
                 templateUrl: 'User/Dashboard',
             })
-
             .state('user.users', {
                 url: '/users',
                 templateUrl: 'User/Users',
                 controller: 'userController',
                 parent: "user",
             })
-
             .state('user.roles', {
                 url: '/roles',
                 templateUrl: 'User/Roles',
                 controller: 'manageRoleController',
                 parent: "user",
             })
+            .state('user.test', {
+                url: '/test',
+                templateUrl: 'User/Test',
+                parent: "user",
+            })
 
         $urlRouterProvider.otherwise('/');
-
-
     });

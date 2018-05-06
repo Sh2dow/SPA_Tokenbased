@@ -1,19 +1,23 @@
-﻿
-
-app.controller('userController', ['$scope', 'manageUserRoleService', 'manageTimeService', function ($scope, manageUserRoleService, manageTimeService) {
+﻿app.controller('userController', function (
+    $scope,
+    manageUserService,
+    manageTimeService,
+    $compile) {
 
     $scope.init = function () {
-        manageUserRoleService.GetAllUsers().then(function (response) {
-            $scope.Users = response.data;
-        }, function () {
-            alert("Failed.");
-        })
+        _initUsersGrid();
+    }
+
+    function _initUsersGrid() {
+        if (typeof usersGrid !== 'undefined') {
+            $scope.userGrid = usersGrid.init($scope, $compile);
+        }
     }
 
     $scope.init();
 
-    $scope.ViewTracking = function (user) {
-        manageTimeService.GetUserTracks(user.id).then(function (response) {
+    $scope.ViewTracking = function (userId) {
+        manageTimeService.GetUserTracks(userId).then(function (response) {
             $scope.timeTracks = response.data;
         }, function () {
             alert("Failed.");
@@ -25,7 +29,7 @@ app.controller('userController', ['$scope', 'manageUserRoleService', 'manageTime
     }
 
     $scope.DeleteUser = function (id) {
-        manageUserRoleService.DeleteUser(id).then(function () {
+        manageUserService.DeleteUser(id).then(function () {
             alert("Deleted Successfully.");
             $scope.init();
         }, function () {
@@ -35,11 +39,9 @@ app.controller('userController', ['$scope', 'manageUserRoleService', 'manageTime
 
     //roles management
 
-    $scope.GetRoles = function (user) {
-        $scope.SelectedUser = angular.copy(user);
-        $scope.selection = [];
+    $scope.GetRoles = function (userId) {
 
-        manageUserRoleService.GetAllRoles().then(function (response) {
+        manageUserService.GetRoles(userId).then(function (response) {
             $scope.Roles = response.data;
 
             if ($scope.SelectedUser.Roles != null) {
@@ -71,7 +73,7 @@ app.controller('userController', ['$scope', 'manageUserRoleService', 'manageTime
     };
 
     $scope.UpdateUserRoles = function () {
-        manageUserRoleService.AddUpdateToRoles($scope.SelectedUser.id, $scope.selection).then(function () {
+        manageUserService.AddUpdateToRoles($scope.SelectedUser.id, $scope.selection).then(function () {
             $scope.init();
             alert("User roles added successfully.");
         }, function () {
@@ -79,4 +81,4 @@ app.controller('userController', ['$scope', 'manageUserRoleService', 'manageTime
         });
     };
 
-}])
+})

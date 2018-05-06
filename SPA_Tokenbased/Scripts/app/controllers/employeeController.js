@@ -1,5 +1,4 @@
-﻿//1.
-app.controller('emplcontroller', function ($scope, empservice) {
+﻿app.controller('emplcontroller', function ($scope, empservice) {
     $scope.Employees = [];
 
     $scope.Message = "";

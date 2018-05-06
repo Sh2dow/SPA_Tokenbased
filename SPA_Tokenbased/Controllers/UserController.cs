@@ -22,11 +22,6 @@ namespace WebAPI_NG_TokenbasedAuth.Controllers
             return PartialView();
         }
 
-        public ActionResult Sidebar()
-        {
-            return PartialView();
-        }
-
         public ActionResult Dashboard()
         {
             return PartialView();

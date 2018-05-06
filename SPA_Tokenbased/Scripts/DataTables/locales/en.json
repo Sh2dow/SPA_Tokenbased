@@ -1,0 +1,17 @@
+﻿{
+    "metronicGroupActions": "_TOTAL_ records selected:  ",
+    "metronicAjaxRequestGeneralError": "Something has happened that the system can not load the data. Try to reload the page.",
+    "lengthMenu": "<span class='seperator'>|</span>View _MENU_ records",
+    "info": "<span class='seperator'>|</span>Found total _TOTAL_ records",
+    "infoEmpty": "",
+    "emptyTable": "No data available in table",
+    "zeroRecords": "No matching records found",
+    "paginate": {
+        "previous": "Prev",
+        "next": "Next",
+        "last": "Last",
+        "first": "First",
+        "page": "Page",
+        "pageOf": "of"
+    }
+}
